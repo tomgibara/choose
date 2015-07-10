@@ -46,7 +46,7 @@ class ChoicesLong extends ChoicesBase {
 		if (index < 0) throw new IndexOutOfBoundsException("negative index");
 		if (index >= lc) throw new IndexOutOfBoundsException("index too large");
 	}
-	
+
 	long randomIndex(Random random) {
 		//TODO could cache
 		long mask = -1L >>> Long.numberOfLeadingZeros(lc);
@@ -56,7 +56,7 @@ class ChoicesLong extends ChoicesBase {
 			return r;
 		}
 	}
-	
+
 	void choiceAsArrayImpl(long i, int[] array) {
 		int a = n;
 		int b = k;

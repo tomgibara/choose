@@ -9,7 +9,7 @@ public class ChoicesBigInt extends ChoicesBase {
 
 	public ChoicesBigInt(int n, int k, BigInteger c) {
 		super(n, k, c);
-	
+
 		cs = new BigInteger[k + 1][n + 1];
 		for (int i = 0; i <= k; i++) {
 			for (int j = 0; j <= n; j++) {
@@ -18,7 +18,7 @@ public class ChoicesBigInt extends ChoicesBase {
 			}
 		}
 	}
-	
+
 	@Override
 	public void choiceAsArray(long index, int[] array) {
 		choiceAsArray(BigInteger.valueOf(index), array);
@@ -34,19 +34,19 @@ public class ChoicesBigInt extends ChoicesBase {
 		int a = n;
 		int b = k;
 		BigInteger x = (cs[b][a] /*choose(a, b)*/).subtract(BigInteger.ONE).subtract(m);
-		
+
 		for (int j = 0; j < k; j++) {
 			a = largest(a, b, x);
 			x = x.subtract(cs[b][a] /* choose(a, b) */);
 			as[j] = a;
 			b --;
 		}
-		
+
 		for (int j = 0; j < k; j++) {
 			as[j] = n - 1 - as[j];
 		}
 	}
-	
+
 	@Override
 	public void randomChoiceAsArray(Random random, int[] array) {
 		int bits = c.bitCount();
@@ -57,7 +57,7 @@ public class ChoicesBigInt extends ChoicesBase {
 			return;
 		}
 	}
-	
+
 	private int largest(int a, int b, BigInteger x) {
 		int v;
 		for (v = a - 1; x.compareTo(cs[b][v] /*choose(v, b)*/) < 0; v--);

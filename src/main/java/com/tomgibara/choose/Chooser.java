@@ -7,12 +7,12 @@ public final class Chooser<S,T> {
 
 	private final ChoicesBase choices;
 	private final Choosing<S,T> choosing;
-	
+
 	Chooser(ChoicesBase choices, Choosing<S,T> choosing) {
 		this.choices = choices;
 		this.choosing = choosing;
 	}
-	
+
 	public Choices getChoices() {
 		return choices;
 	}
