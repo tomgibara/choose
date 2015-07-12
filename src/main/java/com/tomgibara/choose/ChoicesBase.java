@@ -20,23 +20,38 @@ abstract class ChoicesBase implements Choices {
 		if (choosing == null) throw new IllegalArgumentException("null choosing");
 		return new Chooser<S,T>(this, choosing);
 	}
-
-	void choose(BigInteger index, Choosable<?,?> choosable) {
+	
+	@Override
+	public int[] choiceAsArray(long index) throws IndexOutOfBoundsException {
 		int[] cs = ints();
 		choiceAsArray(index, cs);
-		choose(cs, choosable);
+		return cs;
+	}
+
+	@Override
+	public int[] choiceAsArray(BigInteger index) {
+		int[] cs = ints();
+		choiceAsArray(index, cs);
+		return cs;
+	}
+
+	@Override
+	public int[] randomChoiceAsArray(Random random) {
+		int[] cs = ints();
+		randomChoiceAsArray(random, cs);
+		return cs;
+	}
+
+	void choose(BigInteger index, Choosable<?,?> choosable) {
+		choose(choiceAsArray(index), choosable);
 	}
 
 	void choose(long index, Choosable<?,?> choosable) {
-		int[] cs = ints();
-		choiceAsArray(index, cs);
-		choose(cs, choosable);
+		choose(choiceAsArray(index), choosable);
 	}
 
 	void choose(Random random, Choosable<?,?> choosable) {
-		int[] cs = ints();
-		randomChoiceAsArray(random, cs);
-		choose(cs, choosable);
+		choose(randomChoiceAsArray(random), choosable);
 	}
 
 	void checkIndex(BigInteger index) {

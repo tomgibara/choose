@@ -77,7 +77,7 @@ public interface Choices {
 	 *             if the index is less than zero or exceeds the value returned
 	 *             by {@link #getNumberOfChoices()}
 	 */
-	void choiceAsArray(BigInteger index, int[] array);
+	void choiceAsArray(BigInteger index, int[] array) throws IllegalArgumentException, IndexOutOfBoundsException;
 
 	/**
 	 * Returns a choice of k items from n, chosen uniformly at random from all
@@ -90,10 +90,48 @@ public interface Choices {
 	 * @throws IllegalArgumentException
 	 *             if the array is null or shorter than the value returned by
 	 *             {@link #getK()}
+	 * @throws IllegalStateException
+	 *             if there are no choices
+	 */
+	void randomChoiceAsArray(Random random, int[] array) throws IllegalStateException;
+
+	/**
+	 * Returns the choice identified by the supplied index.
+	 * 
+	 * @param index
+	 *            the index of the choice
+	 * @return
+	 *            an array containing the k chosen indices
 	 * @throws IndexOutOfBoundsException
 	 *             if the index is less than zero or exceeds the value returned
 	 *             by {@link #getNumberOfChoices()}
 	 */
-	void randomChoiceAsArray(Random random, int[] array);
+	int[] choiceAsArray(long index) throws IndexOutOfBoundsException;
+
+	/**
+	 * Returns the choice identified by the supplied index.
+	 * 
+	 * @param index
+	 *            the index of the choice
+	 * @return
+	 *            an array containing the k chosen indices
+	 * @throws IndexOutOfBoundsException
+	 *             if the index is less than zero or exceeds the value returned
+	 *             by {@link #getNumberOfChoices()}
+	 */
+	int[] choiceAsArray(BigInteger index);
+
+	/**
+	 * Returns a choice of k items from n, chosen uniformly at random from all
+	 * such possible choices.
+	 * 
+	 * @param index
+	 *            the index of the choice
+	 * @return
+	 *            an array containing the k chosen indices
+	 * @throws IllegalStateException
+	 *             if there are no choices
+	 */
+	int[] randomChoiceAsArray(Random random);
 
 }
