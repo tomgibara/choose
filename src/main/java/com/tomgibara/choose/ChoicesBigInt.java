@@ -3,18 +3,20 @@ package com.tomgibara.choose;
 import java.math.BigInteger;
 import java.util.Random;
 
-public class ChoicesBigInt extends ChoicesBase {
+class ChoicesBigInt extends ChoicesBase {
 
 	private final BigInteger[][] cs;
 
-	public ChoicesBigInt(int n, int k, BigInteger c) {
-		super(n, k, c);
+	ChoicesBigInt(Choose c) {
+		super(c);
+		int n = c.n;
+		int k = c.k;
 
 		cs = new BigInteger[k + 1][n + 1];
 		for (int i = 0; i <= k; i++) {
 			for (int j = 0; j <= n; j++) {
 				//TODO use a more efficient approach
-				cs[i][j] = Choose.asBigInt(j, i);
+				cs[i][j] = Choose.from(j, i).asBigInt();
 			}
 		}
 	}
@@ -28,6 +30,8 @@ public class ChoicesBigInt extends ChoicesBase {
 	public void choiceAsArray(BigInteger m, int[] as) {
 		final BigInteger[][] cs = this.cs;
 		if (m.signum() < 0) throw new IndexOutOfBoundsException();
+		int n = c.n;
+		int k = c.k;
 		if (m.compareTo(cs[k][n] /* choose(n, k) */) >= 0) throw new IndexOutOfBoundsException();
 		if (as.length < k) throw new IllegalArgumentException();
 
@@ -49,10 +53,11 @@ public class ChoicesBigInt extends ChoicesBase {
 
 	@Override
 	public void randomChoiceAsArray(Random random, int[] array) {
-		int bits = c.bitCount();
+		BigInteger m = c.asBigInt();
+		int bits = m.bitCount();
 		while (true) {
 			BigInteger r = new BigInteger(bits, random);
-			if (r.compareTo(c) >= 0) continue;
+			if (r.compareTo(m) >= 0) continue;
 			choiceAsArray(r, array);
 			return;
 		}

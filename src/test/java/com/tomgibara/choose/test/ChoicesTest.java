@@ -1,11 +1,16 @@
 package com.tomgibara.choose.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.tomgibara.choose.Choices;
@@ -21,9 +26,10 @@ public class ChoicesTest {
 	}
 
 	private void testSmall(int n, int k) {
-		Choices choices = Choose.from(n, k);
+		Choose choose = Choose.from(n, k);
+		Choices choices = choose.choices();
 		Chooser<String, String> chooser = choices.choosing(Choose.CHOOSING_STRING);
-		int count = choices.getNumberOfChoices().intValue();
+		int count = choose.asBigInt().intValue();
 		List<String> strs = new ArrayList<String>();
 		String string;
 		{
@@ -38,7 +44,55 @@ public class ChoicesTest {
 			assertEquals(k, str.length());
 			strs.add(str);
 		}
-		assertEquals(Choose.asLong(n, k), strs.size());
+		assertEquals(count, strs.size());
 		assertEquals(strs.size(), new HashSet<String>(strs).size());
+	}
+	
+	@Test
+	public void testOrderedIndices() {
+		Random r = new Random(0);
+		for (int n = 1; n < 10; n++) {
+			for (int k = 1; k < n; k++) {
+				testOrderedIndices(n, k, r);
+			}
+		}
+		for (int n = 1; n < 100; n += 10) {
+			for (int k = 1; k < n; k+= 10) {
+				testOrderedIndices(n, k, r);
+			}
+		}
+	}
+	
+	private void testOrderedIndices(int n, int k, Random r) {
+		Choices choices = Choose.from(n, k).choices();
+		int[] choice = new int[k];
+		int[] sorted = new int[k];
+		for (int i = 0; i < 100; i++) {
+			choices.randomChoiceAsArray(r, choice);
+			System.arraycopy(choice, 0, sorted, 0, k);
+			Arrays.sort(sorted);
+			assertTrue(Arrays.equals(sorted, choice));
+		}
+	}
+
+	@Test
+	public void testNullIndex() {
+		Choose.from(3, 2).choices().choiceAsArray(BigInteger.ONE, new int[2]);
+		try {
+			Choose.from(3, 2).choices().choiceAsArray(null, new int[2]);
+			Assert.fail();
+		} catch (IllegalArgumentException e) {
+			/* expected */
+		}
+	}
+	
+	@Test
+	public void testNoChoices() {
+		try {
+			Choose.from(2, 3).choices().randomChoiceAsArray(new Random(), new int[3]);
+			Assert.fail();
+		} catch (IndexOutOfBoundsException e) {
+			/* expected */
+		}
 	}
 }

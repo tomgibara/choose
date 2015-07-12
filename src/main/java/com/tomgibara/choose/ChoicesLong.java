@@ -5,20 +5,19 @@ import java.util.Random;
 
 class ChoicesLong extends ChoicesBase {
 
-	private final long lc;
 	private final long[][] cs;
 
-	public ChoicesLong(int n, int k, BigInteger c) {
-		super(n, k, c);
+	ChoicesLong(Choose c) {
+		super(c);
+		int n = c.n;
+		int k = c.k;
 
 		cs = new long[k + 1][n + 1];
 		for (int i = 0; i <= k; i++) {
 			for (int j = 0; j <= n; j++) {
-				cs[i][j] = Choose.asLong(j, i);
+				cs[i][j] = Choose.from(j,i).asLong();
 			}
 		}
-
-		lc = c.longValue();
 	}
 
 	@Override
@@ -44,10 +43,11 @@ class ChoicesLong extends ChoicesBase {
 
 	void checkIndex(long index) {
 		if (index < 0) throw new IndexOutOfBoundsException("negative index");
-		if (index >= lc) throw new IndexOutOfBoundsException("index too large");
+		if (index >= c.asLong()) throw new IndexOutOfBoundsException("index too large");
 	}
 
 	long randomIndex(Random random) {
+		long lc = c.asLong();
 		//TODO could cache
 		long mask = -1L >>> Long.numberOfLeadingZeros(lc);
 		while (true) {
@@ -58,18 +58,20 @@ class ChoicesLong extends ChoicesBase {
 	}
 
 	void choiceAsArrayImpl(long i, int[] array) {
+		int n = c.n;
+		int k = c.k;
 		int a = n;
 		int b = k;
 		long x = cs[b][a] /*choose(a, b)*/ - 1 - i;
 
-		for (int j = 0; j < array.length; j++) {
+		for (int j = 0; j < k; j++) {
 			a = largest(a, b, x);
 			x -= cs[b][a] /* choose(a, b) */;
 			array[j] = a;
 			b --;
 		}
 
-		for (int j = 0; j < array.length; j++) {
+		for (int j = 0; j < k; j++) {
 			array[j] = n - 1 - array[j];
 		}
 	}
@@ -78,7 +80,9 @@ class ChoicesLong extends ChoicesBase {
 	long bits(long i, int nBits) throws IllegalStateException, IndexOutOfBoundsException {
 		final long[][] cs = this.cs;
 		if (i < 0) throw new IndexOutOfBoundsException();
-		if (i >= lc) throw new IndexOutOfBoundsException();
+		if (i >= c.asLong()) throw new IndexOutOfBoundsException();
+		int n = c.n;
+		int k = c.k;
 		int a = n;
 		int b = k;
 		long x = cs[b][a] /*choose(a, b)*/ - 1 - i;

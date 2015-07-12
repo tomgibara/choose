@@ -3,33 +3,19 @@ package com.tomgibara.choose;
 import java.math.BigInteger;
 import java.util.Random;
 
-public abstract class ChoicesBase implements Choices {
+abstract class ChoicesBase implements Choices {
 
-	final int n;
-	final int k;
-	final BigInteger c;
+	final Choose c;
 
-	public ChoicesBase(int n, int k, BigInteger c) {
-		this.n = n;
-		this.k = k;
+	ChoicesBase(Choose c) {
 		this.c = c;
 	}
 
 	@Override
-	public int getN() {
-		return n;
-	}
-
-	@Override
-	public int getK() {
-		return k;
-	}
-
-	@Override
-	public BigInteger getNumberOfChoices() {
+	public Choose getChoose() {
 		return c;
 	}
-
+	
 	public <S,T> Chooser<S,T> choosing(Choosing<S,T> choosing) {
 		if (choosing == null) throw new IllegalArgumentException("null choosing");
 		return new Chooser<S,T>(this, choosing);
@@ -54,13 +40,15 @@ public abstract class ChoicesBase implements Choices {
 	}
 
 	void checkIndex(BigInteger index) {
+		if (index == null) throw new IllegalArgumentException("null index");
 		if (index.signum() < 0) throw new IndexOutOfBoundsException("negative index");
-		if (index.compareTo(c) >= 0) throw new IndexOutOfBoundsException("index too large");
+		//TODO should cache c.asBigInt()?
+		if (index.compareTo(c.asBigInt()) >= 0) throw new IndexOutOfBoundsException("index too large");
 	}
 
 	void checkArray(int[] array) {
 		if (array == null) throw new IllegalArgumentException("null array");
-		if (array.length < k) throw new IllegalArgumentException("array too short");
+		if (array.length < c.k) throw new IllegalArgumentException("array too short");
 	}
 
 	void checkRandom(Random random) {
@@ -68,7 +56,7 @@ public abstract class ChoicesBase implements Choices {
 	}
 
 	private int[] ints() {
-		return new int[k];
+		return new int[c.k];
 	}
 
 	private void choose(int[] cs, Choosable<?,?> choosable) {
