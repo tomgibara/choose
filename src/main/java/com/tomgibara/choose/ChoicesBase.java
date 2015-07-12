@@ -31,12 +31,12 @@ abstract class ChoicesBase implements Choices {
 	public Choose getChoose() {
 		return c;
 	}
-	
+
 	public <S,T> Chooser<S,T> choosing(Choosing<S,T> choosing) {
 		if (choosing == null) throw new IllegalArgumentException("null choosing");
 		return new Chooser<S,T>(this, choosing);
 	}
-	
+
 	@Override
 	public int[] choiceAsArray(long index) throws IndexOutOfBoundsException {
 		int[] cs = ints();

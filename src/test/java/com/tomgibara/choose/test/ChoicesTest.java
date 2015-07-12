@@ -63,7 +63,7 @@ public class ChoicesTest {
 		assertEquals(count, strs.size());
 		assertEquals(strs.size(), new HashSet<String>(strs).size());
 	}
-	
+
 	@Test
 	public void testOrderedIndices() {
 		Random r = new Random(0);
@@ -78,7 +78,7 @@ public class ChoicesTest {
 			}
 		}
 	}
-	
+
 	private void testOrderedIndices(int n, int k, Random r) {
 		Choices choices = Choose.from(n, k).choices();
 		int[] choice = new int[k];
@@ -101,7 +101,7 @@ public class ChoicesTest {
 			/* expected */
 		}
 	}
-	
+
 	@Test
 	public void testNoChoices() {
 		try {

@@ -26,7 +26,7 @@ import java.util.Set;
  * Entry point for the API. Provides a method for computing the possible choices
  * of k from n, together with methods for computing the total number of such
  * choices (n choose k).
- * 
+ *
  * @author Tom Gibara
  *
  */
@@ -77,7 +77,7 @@ public final class Choose {
 		if (k < 0) throw new IllegalArgumentException("negative k");
 		return new Choose(n, k);
 	}
-	
+
 	final int n;
 	final int k;
 	private final long cLong;
@@ -105,7 +105,7 @@ public final class Choose {
 				delta = k;
 				max = n - k;
 			}
-	
+
 			cInt = null;
 			cLong = delta + 1;
 			for (long i = 2; i <= max; i++) {
@@ -133,7 +133,7 @@ public final class Choose {
 
 	/**
 	 * The number of items being chosen from.
-	 * 
+	 *
 	 * @return n
 	 */
 
@@ -143,19 +143,19 @@ public final class Choose {
 
 	/**
 	 * The number of items being chosen.
-	 * 
+	 *
 	 * @return k
 	 */
 
 	public int getK() {
 		return k;
 	}
-	
+
 	/**
 	 * Create choices of k items selected from n elements, without regard to
 	 * order. The upfront costs of creating new choices may be significant for
 	 * large values of n and k.
-	 * 
+	 *
 	 * @return the choices
 	 */
 
@@ -197,12 +197,12 @@ public final class Choose {
 		if (c.compareTo(MAX_LONG_VALUE) <= 0) return new ChoicesLong(this);
 		return new ChoicesBigInt(this);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return n * 1337 + k;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -210,7 +210,7 @@ public final class Choose {
 		Choose that = (Choose) obj;
 		return this.n == that.n && this.k == that.k;
 	}
-	
+
 	@Override
 	public String toString() {
 		return asBigInt() + "(" + n + " choose " + k + ")";

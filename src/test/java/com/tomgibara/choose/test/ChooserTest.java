@@ -36,7 +36,7 @@ public class ChooserTest {
 			/* expected */
 		}
 	}
-	
+
 	@Test
 	public void testNoChoices() {
 		try {
@@ -46,7 +46,7 @@ public class ChooserTest {
 			/* expected */
 		}
 	}
-	
+
 	@Test
 	public void testConsistency() {
 		Random r = new Random(0L);

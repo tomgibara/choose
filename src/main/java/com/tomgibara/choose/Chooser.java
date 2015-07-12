@@ -21,7 +21,7 @@ import java.util.Random;
 
 /**
  * A chooser applies a method of {@link Choosing} to {@link Choices}, allowing items to be chosen from a specific object type.
- * 
+ *
  * @author Tom Gibara
  *
  * @param <S>
@@ -39,10 +39,10 @@ public final class Chooser<S,T> {
 		this.choices = choices;
 		this.choosing = choosing;
 	}
-	
+
 	/**
 	 * The choices that can be made.
-	 * 
+	 *
 	 * @return the choices
 	 */
 
@@ -52,7 +52,7 @@ public final class Chooser<S,T> {
 
 	/**
 	 * Chooses items from the supplied source object.
-	 * 
+	 *
 	 * @param index
 	 *            specifies the choice to be made
 	 * @param source
@@ -63,7 +63,7 @@ public final class Chooser<S,T> {
 	 * @throws IllegalArgumentException
 	 *             if the source does not contain n items
 	 */
-	
+
 	public T choose(long index, S source) throws IndexOutOfBoundsException, IllegalArgumentException {
 		Choosable<S,T> choosable = choosable(source);
 		choices.choose(index, choosable);
@@ -72,7 +72,7 @@ public final class Chooser<S,T> {
 
 	/**
 	 * Chooses items from the supplied source object.
-	 * 
+	 *
 	 * @param index
 	 *            specifies the choice to be made
 	 * @param source
@@ -83,16 +83,16 @@ public final class Chooser<S,T> {
 	 * @throws IllegalArgumentException
 	 *             if the source does not contain n items
 	 */
-	
+
 	public T choose(BigInteger index, S source) throws IndexOutOfBoundsException, IllegalArgumentException {
 		Choosable<S,T> choosable = choosable(source);
 		choices.choose(index, choosable);
 		return choosable.chosen();
 	}
-	
+
 	/**
 	 * Makes a random choice of items from the supplied source object.
-	 * 
+	 *
 	 * @param random
 	 *            a source of random data
 	 * @param source

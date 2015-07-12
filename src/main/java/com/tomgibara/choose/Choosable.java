@@ -20,7 +20,7 @@ package com.tomgibara.choose;
  * Performs the selection of items from one type of object <code>S</code> into
  * another <code>T</code>. It is frequently the case that these two types are
  * the same.
- * 
+ *
  * @author Tom Gibara
  *
  * @param <S>
@@ -34,7 +34,7 @@ public interface Choosable<S,T> {
 	/**
 	 * Supplies the object from which items are to be chosen. This method on the
 	 * interface will always be called first.
-	 * 
+	 *
 	 * @param source
 	 *            the object that contains the items being chosen, never null
 	 */
@@ -44,7 +44,7 @@ public interface Choosable<S,T> {
 	/**
 	 * Returns the number of items stored by the object supplied to the
 	 * {@link #from(Object)} method.
-	 * 
+	 *
 	 * @return the number of items in the source object
 	 */
 
@@ -55,7 +55,7 @@ public interface Choosable<S,T> {
 	 * source object. The first parameter supplies the index of the item being
 	 * chosen. The second parameter is supplied as a convenience and may be
 	 * ignored; it spans <code>0,..,k-1</code>.
-	 * 
+	 *
 	 * @param from
 	 *            the index of the item being chosen
 	 * @param to
@@ -68,7 +68,7 @@ public interface Choosable<S,T> {
 	 * Supplies the final object that contains the chosen items. This method on
 	 * the interface is guaranteed to be called last. Implementations are free
 	 * to reuse the {@link Choosable} after this call.
-	 * 
+	 *
 	 * @return the chosen items
 	 */
 	T chosen();

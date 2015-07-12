@@ -22,12 +22,12 @@ import java.util.Random;
 class ChoicesPacked extends ChoicesLong {
 
 	// statics
-	
+
 	static boolean isPackable(int n, int k) {
 		int bits = 32 - Integer.numberOfLeadingZeros(n);
 		return bits * k <= 64;
 	}
-	
+
 	// fields
 
 	private final int b; // number of bits in n

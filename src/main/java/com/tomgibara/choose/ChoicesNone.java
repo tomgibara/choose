@@ -43,5 +43,5 @@ class ChoicesNone extends ChoicesBase {
 	private void noChoices() {
 		throw new IndexOutOfBoundsException("no choices");
 	}
-	
+
 }

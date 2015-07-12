@@ -19,7 +19,7 @@ package com.tomgibara.choose;
 /**
  * Creates {@link Choosable} instances for choosing k items from a source
  * object.
- * 
+ *
  * @author Tom Gibara
  *
  * @param <S>
@@ -35,7 +35,7 @@ public interface Choosing<S, T> {
 	 * supplied as a hint to allow the returned {@link Choosable} to preallocate
 	 * storage for the chosen items. Returned objects may be reused after a call
 	 * to their {@link Choosable#chosen()} method.
-	 * 
+	 *
 	 * @param k
 	 *            the number of items that will be chosen
 	 * @return a choosable

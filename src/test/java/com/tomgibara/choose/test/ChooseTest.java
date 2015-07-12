@@ -63,7 +63,7 @@ public class ChooseTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testWiderConsistency() {
 		for (int n = 1; n < 100; n += 10) {
