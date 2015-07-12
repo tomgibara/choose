@@ -1,6 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
 
 class ChoosingInts implements Choosing<int[], int[]> {
 
@@ -28,7 +27,6 @@ class ChoosingInts implements Choosing<int[], int[]> {
 
 			@Override
 			public int[] chosen() {
-				Arrays.sort(chosen);
 				return chosen;
 			}
 

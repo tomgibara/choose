@@ -1,7 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
-
 
 class ChoosingString implements Choosing<String, String> {
 
@@ -29,7 +27,6 @@ class ChoosingString implements Choosing<String, String> {
 
 			@Override
 			public String chosen() {
-				Arrays.sort(chars);
 				return new String(chars);
 			}
 

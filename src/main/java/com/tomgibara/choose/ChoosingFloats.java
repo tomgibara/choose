@@ -1,6 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
 
 class ChoosingFloats implements Choosing<float[], float[]> {
 
@@ -28,7 +27,6 @@ class ChoosingFloats implements Choosing<float[], float[]> {
 
 			@Override
 			public float[] chosen() {
-				Arrays.sort(chosen);
 				return chosen;
 			}
 

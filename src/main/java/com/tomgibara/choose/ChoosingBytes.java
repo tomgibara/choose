@@ -1,6 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
 
 class ChoosingBytes implements Choosing<byte[], byte[]> {
 
@@ -28,7 +27,6 @@ class ChoosingBytes implements Choosing<byte[], byte[]> {
 
 			@Override
 			public byte[] chosen() {
-				Arrays.sort(chosen);
 				return chosen;
 			}
 

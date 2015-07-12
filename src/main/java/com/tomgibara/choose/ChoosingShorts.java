@@ -1,6 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
 
 class ChoosingShorts implements Choosing<short[], short[]> {
 
@@ -28,7 +27,6 @@ class ChoosingShorts implements Choosing<short[], short[]> {
 
 			@Override
 			public short[] chosen() {
-				Arrays.sort(chosen);
 				return chosen;
 			}
 

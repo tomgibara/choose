@@ -1,6 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
 
 class ChoosingChars implements Choosing<char[], char[]> {
 
@@ -28,7 +27,6 @@ class ChoosingChars implements Choosing<char[], char[]> {
 
 			@Override
 			public char[] chosen() {
-				Arrays.sort(chosen);
 				return chosen;
 			}
 

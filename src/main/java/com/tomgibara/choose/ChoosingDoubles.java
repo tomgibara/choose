@@ -1,6 +1,5 @@
 package com.tomgibara.choose;
 
-import java.util.Arrays;
 
 class ChoosingDoubles implements Choosing<double[], double[]> {
 
@@ -28,7 +27,6 @@ class ChoosingDoubles implements Choosing<double[], double[]> {
 
 			@Override
 			public double[] chosen() {
-				Arrays.sort(chosen);
 				return chosen;
 			}
 
