@@ -16,13 +16,14 @@ import java.util.Random;
  * 
  * <p>
  * All possible choices are indexed in strict numerical order, so that given two
- * combinations c1 and c2, that first differ at index i, c1[i] < c2[i] implies
- * c1 precedes c2.
+ * combinations c1 and c2, that first differ at index i, c1[i] &lt; c2[i]
+ * implies c1 precedes c2.
  * </p>
  * 
  * @author Tom Gibara
  *
  */
+
 public interface Choices {
 
 	/**
@@ -56,10 +57,10 @@ public interface Choices {
 	 *            an array containing the k chosen indices
 	 * @throws IllegalArgumentException
 	 *             if the array is null or shorter than the value returned by
-	 *             {@link #getK()}
+	 *             {@link Choose#getK()}
 	 * @throws IndexOutOfBoundsException
 	 *             if the index is less than zero or exceeds the value returned
-	 *             by {@link #getNumberOfChoices()}
+	 *             by {@link Choose#asBigInt()}
 	 */
 	void choiceAsArray(long index, int[] array) throws IllegalArgumentException, IndexOutOfBoundsException;
 
@@ -72,10 +73,10 @@ public interface Choices {
 	 *            an array containing the k chosen indices
 	 * @throws IllegalArgumentException
 	 *             if the array is null or shorter than the value returned by
-	 *             {@link #getK()}
+	 *             {@link Choose#getK()}
 	 * @throws IndexOutOfBoundsException
 	 *             if the index is less than zero or exceeds the value returned
-	 *             by {@link #getNumberOfChoices()}
+	 *             by {@link Choose#asBigInt()}
 	 */
 	void choiceAsArray(BigInteger index, int[] array) throws IllegalArgumentException, IndexOutOfBoundsException;
 
@@ -83,13 +84,13 @@ public interface Choices {
 	 * Returns a choice of k items from n, chosen uniformly at random from all
 	 * such possible choices.
 	 * 
-	 * @param index
-	 *            the index of the choice
+	 * @param random
+	 *            a source of random data
 	 * @param array
 	 *            an array containing the k chosen indices
 	 * @throws IllegalArgumentException
 	 *             if the array is null or shorter than the value returned by
-	 *             {@link #getK()}
+	 *             {@link Choose#getK()}
 	 * @throws IllegalStateException
 	 *             if there are no choices
 	 */
@@ -104,7 +105,7 @@ public interface Choices {
 	 *            an array containing the k chosen indices
 	 * @throws IndexOutOfBoundsException
 	 *             if the index is less than zero or exceeds the value returned
-	 *             by {@link #getNumberOfChoices()}
+	 *             by {@link Choose#asBigInt()}
 	 */
 	int[] choiceAsArray(long index) throws IndexOutOfBoundsException;
 
@@ -117,7 +118,7 @@ public interface Choices {
 	 *            an array containing the k chosen indices
 	 * @throws IndexOutOfBoundsException
 	 *             if the index is less than zero or exceeds the value returned
-	 *             by {@link #getNumberOfChoices()}
+	 *             by {@link Choose#asBigInt()}
 	 */
 	int[] choiceAsArray(BigInteger index);
 
@@ -125,8 +126,8 @@ public interface Choices {
 	 * Returns a choice of k items from n, chosen uniformly at random from all
 	 * such possible choices.
 	 * 
-	 * @param index
-	 *            the index of the choice
+	 * @param random
+	 *            a source of random data
 	 * @return
 	 *            an array containing the k chosen indices
 	 * @throws IllegalStateException
