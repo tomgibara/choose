@@ -91,7 +91,10 @@ class ChoicesLong extends ChoicesBase {
 		for (int j = 0; j < k; j++) {
 			a = largest(a, b, x);
 			x -= cs[b][a] /* choose(a, b) */;
-			bits = (bits << nBits) | (n - 1 - a);
+			// this yields bits in 'wrong' order...
+			//bits = (bits << nBits) | (n - 1 - a);
+			//... so we do this, slightly slower to assemble, slightly cheaper to deconstruct
+			bits |= (long) (n - 1 - a) << nBits * j;
 			b --;
 		}
 
